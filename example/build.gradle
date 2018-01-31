@@ -1,13 +1,13 @@
 buildscript {
     repositories {
         mavenCentral()      // jcenter()
+        google()
+        jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.3.0'
+        classpath 'com.android.tools.build:gradle:3.0.1'
     }
 }
-
-apply plugin: 'com.android.application'
 
 allprojects {
     repositories {
@@ -15,24 +15,16 @@ allprojects {
         flatDir {
             dirs 'libs'
         }
+        google()
+        jcenter()
     }
 }
 
-dependencies {
-    compile fileTree(dir: 'libs', include: '*.jar')
-    compile 'com.github.kongqw:AndroidSerialPort:1.0.1'
-    //implementation 'com.android.support:appcompat-v7:26.1.0'
-    //implementation 'com.android.support.constraint:constraint-layout:1.0.2'
-    //testImplementation 'junit:junit:4.12'
-    //androidTestImplementation 'com.android.support.test:runner:1.0.1'
-    //androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
-    compile(name: 'QR4421ReaderLib-1.0.3', ext: 'aar')
-}
+apply plugin: 'com.android.application'
 
 android {
 
-    compileSdkVersion 25
-    buildToolsVersion '25.0.0'
+    compileSdkVersion 26
 
     defaultConfig {
         applicationId "com.example.jpushdemo" //JPush上注册的包名.
@@ -78,4 +70,15 @@ android {
     lintOptions {
         abortOnError false
     }
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation 'com.github.kongqw:AndroidSerialPort:1.0.1'
+    implementation 'com.android.support:appcompat-v7:26.1.0'
+    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.1'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
+    implementation(name: 'QR4421ReaderLib-1.0.3', ext: 'aar')
 }
